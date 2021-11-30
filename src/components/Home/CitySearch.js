@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import {GoSearch} from 'react-icons/go'
 import CityContext from '../../context/CityContext'
 import CityResumeData from '../CityResumeData'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -21,6 +22,11 @@ const CitySearch = () => {
             const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${apikey}&units=metric`)
             const result = await response.json();
             setCityResumeInfo(result)
+            console.log(cityResumeInfo.cod)
+            if (cityResumeInfo.cod === 404) {
+                toast.error('Ciudad no encontrada!');
+               
+            }
     
         } catch (error) {
             alert(error)
@@ -34,6 +40,7 @@ const CitySearch = () => {
 
     return (
         <div className='self-center md:w-full w-5/6 relative flex flex-col'>
+            <Toaster/>
              <form 
         onSubmit={handleSubmit}
         className='h-1/6 z-20 self-center

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { WeatherOptions } from '../helpers/WeatherOptions';
 import { Player } from '@lottiefiles/react-lottie-player';
+import { Link } from 'react-router-dom';
+
 
 
 const CityResumeData = ({data}) => {
 
-    
-    const [state, setState] = useState('') // Guardar estado de el clima 
+ 
+    const [state, setState] = useState('') // Guardar url del estado de el clima 
     const [loading, setLoading] = useState(false)
       
     const hanldeChangeWeather = (info) => {
@@ -27,6 +29,8 @@ const CityResumeData = ({data}) => {
 
     }
 
+    
+
     useEffect(() => {
         
        setTimeout(() => {
@@ -36,19 +40,16 @@ const CityResumeData = ({data}) => {
        return () => {
 
             hanldeChangeWeather('')
+          
             setLoading(false)
        }
         
-    
-    }, [state,data.weather[0].main])
+       //eslint-disable-next-line 
+    }, [data.weather])
 
 
-    // useEffect(() => {
-    //     effect
-    //     
-    // }, [input])
 
-    console.log(WeatherOptions.Clear.url)
+    console.log('me renderice desdee city resume')
 
     return (
         <div className='text-white self-center text-center
@@ -71,7 +72,11 @@ const CityResumeData = ({data}) => {
    
                 </Player>
 
-                <button className='p-4 w-56 bg-blue-400 rounded-3xl opacity-70 hover:opacity-100 self-center'>Ver Mas</button>
+                <button className='p-4 w-56 bg-blue-400 rounded-3xl opacity-70 hover:opacity-100 self-center'>
+                <nav>
+                    <Link to={`/${data.name}`}>Ver mas</Link>
+                 </nav> 
+                </button>
 
                 </div> 
                 

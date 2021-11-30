@@ -1,22 +1,28 @@
 
 import { Routes, Route } from "react-router-dom";
 import { CityContextProvider } from "./context/CityContext";
+import { WeatherUrlContextProvider } from "./context/WeatherUrlContext";
+import City from "./views/City";
 import Home from "./views/Home";
 
 
 function App() {
-  return (
+    return (
 
-  <CityContextProvider>
+    <CityContextProvider>
+      <WeatherUrlContextProvider>
 
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </div>
+      <>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path='/:name' element= {<City />} />
+        </Routes>
+      </>
+
+        </WeatherUrlContextProvider>
 
 
-  </CityContextProvider>    
+    </CityContextProvider>    
 
   );
 }
