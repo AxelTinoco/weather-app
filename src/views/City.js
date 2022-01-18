@@ -28,7 +28,7 @@ const City = () => {
            console.log(error)
        }
        
-    }, [name,query]);
+    }, [name,query, client.photos]);
 
 
     console.log(photo)
